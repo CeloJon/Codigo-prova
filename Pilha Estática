@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAXTAM 10
+
+void Inicia_Pilha(int *Topo){
+  *Topo = -1;
+}
+
+int Pilha_Vazia(int *Topo) {
+  if (*Topo == -1){}
+  return 0;
+}
+
+
+int Pilha_Cheia(int *Topo) {
+  if (*Topo == MAXTAM -1){}
+  return 0; 
+}
+
+int Inserir (float P[], int *Topo, float Valor){
+  if(Pilha_Cheia(Topo)){
+    printf("========== ERRO! Pilha Cheia! ==========");
+    return -1;
+  }
+  else {
+    (*Topo)++;
+    P[*Topo] = Valor;
+  }
+  return 1;
+}
+
+int Retirar (float P[], int *Topo, float Valor){
+  if(Pilha_Vazia(Topo)){
+    printf("========== ERRO! Pilha Vazia! ==========");
+    return -1;
+  }
+  else{
+    (*Topo)--;
+    Valor = P[*Topo];
+  }
+  return 1;
+}
+
+void Exibir_Pilha(float P[], int *Topo){
+  int i;
+  printf("\n\nExibir Elementos Preenchidos do Vetor\n");
+  for(i=0; i<=*Topo; i++){
+    printf("\nElemento [%d]: %f", i+1, P[i]);
+  }
+  printf("\n\n");
+}
+
+int main(){
+  float P[MAXTAM];
+  int Topo;
+  int ok, op = -1;
+  int dado;
+  Inicia_Pilha(&Topo);
+  while (op != 0){
+    printf("\n\nO que você deseja? (Digite algum dos Números Abaixo)\n\n");
+    printf("\n\n1 -> Inserir\n2 -> Excluir\n3 -> Exibir Pilha\n0 -> FIM");
+    printf("\n\nQual Opção?: \n");
+    scanf("%d", &op);
+    if (op == 1){
+      printf("\nDigite um número: ");
+      scanf("%d", &dado);
+      Inserir(P, &Topo, dado);
+    }
+    else if (op == 2){
+      ok = Retirar(P, &Topo, dado);
+      if (ok != -1)
+        printf("\nElemento Removido: %d", dado);
+    }
+    else if (op == 3){
+      Exibir_Pilha(P, &Topo);
+    }
+  }
+  return 0;
+}
